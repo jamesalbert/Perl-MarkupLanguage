@@ -106,3 +106,113 @@ sub write_to {
 }
 
 1;
+
+=pod
+
+=head1 NAME
+
+    Perl-MarkupLanguage -- a Dynamic, Quick and Easy Way to Produce HTML
+
+=head1 SYNOPSIS
+
+    use Perl::MarkupLanguage;
+
+    my $user = Perl::MarkupLanguage->new;
+
+    $user->head;
+
+    $user->tag(
+        tag => 'script',
+        attributes => {
+            src => 'http://code.jquery.com/jquery-1.8.3.min.js'
+        }
+    );
+
+    $user->end_head;
+
+    $user->body;
+
+    $user->tag(
+        tag        => "h4",
+        text       => "This is a test heading",
+        attributes => {
+            id     => "header_4"
+        }
+    );
+
+    $user->tag(
+        tag     => "p",
+        text    => "this describes the heading",
+        options => {
+            1   => "code",
+            2   => "b"
+        },
+        attributes => {
+            id     => "test_id",
+            class  => "test_class"
+        }
+    );
+
+    $user->end_body;
+
+    $user->run;
+
+    $user->write_to(
+        filename => '/home/jbert/dev/P-ML/test.html'
+    );
+
+=head1 DESCRIPTION
+
+    new() - creates object as well as <!DOCTYPE html> and <html>
+
+    head() - creates a head tag
+
+    end_head() - closes head()
+
+    body() - creates a body tag. can take attributes same way as tag().
+
+    end_body() - closes body()
+
+    tag() - creates an other specified tag.
+        $object->tag(
+            tag  => "tag_name",
+            text => "text inside tag", #(optional)
+            attributes => {
+                attr_1 => "attr_1_name"
+            }, #(optional)
+            options => {
+                opt_1 => "opt_1_name" #usually <code>, <b>, etc
+            }
+        );
+
+    run() - prints out result
+
+    write_to - writes output to specified filename
+
+=head1 AUTHOR
+
+    James Albert <jamesrobertalbert@gmail.com>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
